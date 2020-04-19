@@ -1,0 +1,92 @@
+	                <header id="header">
+						<h1><a href="/">Strona główna</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="/information/">Informacje</a></li>
+								<li><a href="/contact/">Kontakt</a></li>
+								<li><a href="/social-media/">Media społecznościowe</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="{% url 'search' %}">
+										<input type="text" name="q" placeholder="Szukaj" />
+									</form>
+								</li>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+
+
+
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search -->
+							<section>
+								<form class="search" method="get" action="{% url 'search' %}">
+									<input type="text" name="q" placeholder="Szukaj" />
+								</form>
+							</section>
+
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									{% if request.user.is_staff %}
+									<li>
+										<a href="{% url 'post-create' %}">
+											<h3>Stwórz post</h3>
+											<p>Ta opcja przenisie Cie do kreatora postów</p>
+										</a>
+									</li>
+
+
+
+									{% if post.id %}
+									<li>
+										<a href="{% url 'post-update' id=post.id %}">
+											<h3>Edytuj post</h3>
+											<p>Edytuj aktualnie oglądanego posta</p>
+										</a>
+									</li>
+
+									<li>
+										<a href="{% url 'post-delete' id=post.id %}">
+											<h3>Usuń post</h3>
+											<p>Usuń aktualnie oglądanego posta</p>
+										</a>
+									</li>
+
+									{% endif %}
+									{% endif %}
+
+								</ul>
+							</section>
+
+
+						<!-- Actions -->
+							<section>
+								{% if request.user.is_staff %}
+								<ul class="actions stacked">
+									<li><a href="/../../admin" target="_blank" class="button large fit">Zalogowany/a jako {{ user }}</a></li>
+								</ul>
+
+								{% else %}
+
+								<ul class="actions stacked">
+									<li><a href="/../../admin" target="_blank" class="button large fit">Zaloguj się</a></li>
+								</ul>
+
+								{% endif %}
+
+							</section>
+
+					</section>

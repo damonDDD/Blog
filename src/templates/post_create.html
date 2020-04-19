@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div id="wrapper">
+
+    <div id="main">
+
+<article class="post">
+    <h2>{{ title }} posta</h2>
+    {{ form.media }}
+
+    <form method="POST" action="." enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br />
+        <button type="submit">Zatwierdz</button>
+    </form>
+</article>
+
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+						{% for obj in queryset %}
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href='{{ obj.get_absolute_url }}'> {{ obj.title }} </a></h2>
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2015-11-01">{{ obj.timestamp }}</time>
+										<a class="author"><span class="name">{{ obj.author }}</span><img src="{{ obj.author.profile_picture.url }}" alt="" /></a>
+									</div>
+								</header>
+								<a href="{{ obj.get_absolute_url }}" class="image featured"><img src="{{ obj.thumbnail.url }}" alt="" /></a>
+								<p>{{ obj.overview }}</p>
+								<footer>
+									<ul class="actions">
+										<li><a href="{{ obj.get_absolute_url }}" class="button large">Zobacz post</a></li>
+									</ul>
+									<ul class="stats">
+										{% for cat in obj.categories.all %}
+										<li><a> {{ cat }}</a></li>
+										{% endfor %}
+
+										{% comment %}
+										<li><a href="#" class="icon solid fa-heart">28</a></li>
+										<li><a href="#" class="icon solid fa-comment">{{ obj.comment_count }}</a></li>
+										{% endcomment %}
+
+									</ul>
+								</footer>
+							</article>
+						{% endfor %}
+
+
+
+
+						<!-- Pagination -->
+							<ul class="actions pagination">
+								{% if queryset.has_previous %}
+								<li><a href="?{{ page_request_var }}={{ queryset.previous_page_number }}" class="button large previous">Poprzednia strona</a></li>
+								{% endif %}
+
+								{% if queryset.has_next %}
+								<li><a href="?{{ page_request_var }}={{ queryset.next_page_number }}" class="button large next">Następna strona</a></li>
+								{% endif %}
+							</ul>
+
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a class="logo"><img src='{% static "images/logo.jpg" %}' alt="" /></a>
+								<header>
+									<h2>Blog studenta</h2>
+									<p>Blog stworzony na potrzeby zajęć z podstaw programowania</p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+							<section>
+								<div class="mini-posts">
+
+									<!-- Mini Post -->
+									<h2>Ostatnie posty:</h2>
+									{% for obj in latest %}
+										<article class="mini-post">
+											<header>
+												<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+												<time class="published" datetime="2015-10-20">{{ obj.timestamp|timesince }} ago</time>
+												<a href="#" class="author"><img src="{{ obj.author.profile_picture.url }}" alt="" /></a>
+											</header>
+											<a href="{{ obj.get_absolute_url }}" class="image"><img src="{{ obj.thumbnail.url }}" alt="" /></a>
+										</article>
+									{% endfor %}
+
+								</div>
+							</section>
+
+						{% comment %}
+						<!-- Posts List -->
+							<section>
+								<ul class="posts">
+									<li>
+										<article>
+											<header>
+												<h3><a href="single.html">Lorem ipsum fermentum ut nisl vitae</a></h3>
+												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+											</header>
+											<a href="single.html" class="image"><img src="{% static 'images/pic08.jpg' %}" alt="" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="single.html">Convallis maximus nisl mattis nunc id lorem</a></h3>
+												<time class="published" datetime="2015-10-15">October 15, 2015</time>
+											</header>
+											<a href="single.html" class="image"><img src="{% static 'images/pic09.jpg' %}" alt="" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="single.html">Euismod amet placerat vivamus porttitor</a></h3>
+												<time class="published" datetime="2015-10-10">October 10, 2015</time>
+											</header>
+											<a href="single.html" class="image"><img src="{% static 'images/pic10.jpg' %}" alt="" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="single.html">Magna enim accumsan tortor cursus ultricies</a></h3>
+												<time class="published" datetime="2015-10-08">October 8, 2015</time>
+											</header>
+											<a href="single.html" class="image"><img src="{% static 'images/pic11.jpg' %}" alt="" /></a>
+										</article>
+									</li>
+									<li>
+										<article>
+											<header>
+												<h3><a href="single.html">Congue ullam corper lorem ipsum dolor</a></h3>
+												<time class="published" datetime="2015-10-06">October 7, 2015</time>
+											</header>
+											<a href="single.html" class="image"><img src="{% static 'images/pic12.jpg' %}" alt="" /></a>
+										</article>
+									</li>
+								</ul>
+							</section>
+						{% endcomment %}
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>Informacje</h2>
+								<p>Blog został stworzony przez: Damian Dubiński, Mikołaj Kalski, Wiktoria Grubizna, Mateusz Bożęcki</p>
+
+								<ul class="actions">
+									<li><a href="/information/" class="button">Dowiedz się więcej</a></li>
+								</ul>
+
+							</section>
+
+
+
+					</section>
+
+			</div>
+
+{% endblock content %}

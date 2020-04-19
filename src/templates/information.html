@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Wrapper -->
+			<div id="wrapper">
+
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+						<article class="post">
+
+                        <h2>Informacje</h2>
+                        </br />
+                            <p>Blog został stworzony przez:</p>
+                            <ul>
+                                <li>Damian Dubiński,</li>
+                                <li>Mikołaj Kalski,</li>
+                                <li>Wiktoria Grubizna,</li>
+                                <li>Mateusz Bożęcki</li>
+
+                            </ul>
+                            <p>Do stworzenia całego backendu został wykorzystany framework Django 3.0.5, wraz z następującymi modułami/bibliotekami:</p>
+                            <ul>
+                            <li>asgiref 3.2.7</li>
+                            <li>django-crispy-forms 1.9.0</li>
+                            <li>django-tinymce4-lite 1.8.0</li>
+                            <li>jsmin 2.2.2</li>
+                            <li>Pillow 7.1.1</li>
+                            <li>pytz 2019.3</li>
+                            <li>sqlparse 0.3.1</li>
+                            </ul>
+
+                        </article>
+
+
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a class="logo"><img src='{% static "images/logo.jpg" %}' alt="" /></a>
+								<header>
+									<h2>Blog studenta</h2>
+									<p>Blog stworzony na potrzeby zajęć z podstaw programowania</p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+							<section>
+								<div class="mini-posts">
+
+									<!-- Mini Post -->
+									<h2>Ostatnie posty:</h2>
+									{% for obj in latest %}
+										<article class="mini-post">
+											<header>
+												<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+												<time class="published" datetime="2015-10-20">{{ obj.timestamp|timesince }} ago</time>
+												<a href="#" class="author"><img src="{{ obj.author.profile_picture.url }}" alt="" /></a>
+											</header>
+											<a href="{{ obj.get_absolute_url }}" class="image"><img src="{{ obj.thumbnail.url }}" alt="" /></a>
+										</article>
+									{% endfor %}
+
+								</div>
+							</section>
+
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>Informacje</h2>
+								<p>Blog został stworzony przez: Damian Dubiński, Mikołaj Kalski, Wiktoria Grubizna, Mateusz Bożęcki</p>
+
+							</section>
+
+
+
+					</section>
+
+			</div>
+
+
+
+{% endblock content %}

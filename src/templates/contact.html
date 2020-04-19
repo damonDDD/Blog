@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Wrapper -->
+			<div id="wrapper">
+
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+						<article class="post">
+
+                        <h2>Kontakt</h2>
+                            <p>Maile do twórców:</p>
+
+                                <a class="icon solid fa-envelope"> Damian Dubiński: fakeowymail@gmail.com</a><br />
+                                <a class="icon solid fa-envelope"> Mikołaj Kalski: fakeowymail@gmail.com</a><br />
+                                <a class="icon solid fa-envelope"> Wiktoria Grubizna: fakeowymail@gmail.com</a><br />
+                                <a class="icon solid fa-envelope"> Mateusz Bożęcki: fakeowymail@gmail.com</a><br />
+
+
+
+                        </article>
+
+
+					</div>
+
+				<!-- Sidebar -->
+					<section id="sidebar">
+
+						<!-- Intro -->
+							<section id="intro">
+								<a class="logo"><img src='{% static "images/logo.jpg" %}' alt="" /></a>
+								<header>
+									<h2>Blog studenta</h2>
+									<p>Blog stworzony na potrzeby zajęć z podstaw programowania</p>
+								</header>
+							</section>
+
+						<!-- Mini Posts -->
+							<section>
+								<div class="mini-posts">
+
+									<!-- Mini Post -->
+									<h2>Ostatnie posty:</h2>
+									{% for obj in latest %}
+										<article class="mini-post">
+											<header>
+												<h3><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></h3>
+												<time class="published" datetime="2015-10-20">{{ obj.timestamp|timesince }} ago</time>
+												<a href="#" class="author"><img src="{{ obj.author.profile_picture.url }}" alt="" /></a>
+											</header>
+											<a href="{{ obj.get_absolute_url }}" class="image"><img src="{{ obj.thumbnail.url }}" alt="" /></a>
+										</article>
+									{% endfor %}
+
+								</div>
+							</section>
+
+
+						<!-- About -->
+							<section class="blurb">
+								<h2>Informacje</h2>
+								<p>Blog został stworzony przez: Damian Dubiński, Mikołaj Kalski, Wiktoria Grubizna, Mateusz Bożęcki</p>
+
+								<ul class="actions">
+									<li><a href="/information/" class="button">Dowiedz się więcej</a></li>
+								</ul>
+
+							</section>
+
+
+
+					</section>
+
+			</div>
+
+
+
+{% endblock content %}

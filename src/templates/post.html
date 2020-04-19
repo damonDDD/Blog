@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a>{{ post.title }}</a></h2>
+									</div>
+									<div class="meta">
+										<time class="published" datetime="2015-11-01">{{ post.timestamp }}</time>
+										<a class="author"><span class="name">{{ post.author.user.username }}</span><img src='{{ post.author.profile_picture.url }}' /></a>
+									</div>
+								</header>
+								<span class="image featured"><img src='{{ post.thumbnail.url }}'/>
+								{{ post.content | safe }}
+								</span>
+
+								<footer>
+									<ul class="stats">
+										{% for cat in post.categories.all %}
+										<li><a>{{ cat }}</a></li>
+										{% endfor %}
+
+										{% comment %}
+										<li><a href="#" class="icon solid fa-heart">28</a></li>
+										<li><a href="#" class="icon solid fa-comment">{{ post.comment_count }}</a></li>
+										{% endcomment %}
+
+									</ul>
+								</footer>
+
+							</article>
+
+
+						<!-- Pagination -->
+							<ul class="actions pagination">
+								{% if previous_post %}
+								<li><a href="/post/{{previous_post.id}}" class="button large previous">Poprzedni post</a></li>
+								{% endif %}
+
+								{% if next_post %}
+								<li><a href="/post/{{next_post.id}}" class="button large next">Następny post</a></li>
+								{% endif %}
+							</ul>
+
+
+
+					</div>
+
+
+
+			</div>
+
+{% endblock content %}
+
+
+
